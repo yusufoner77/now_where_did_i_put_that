@@ -6,9 +6,16 @@ using namespace std;
 // This function will find a char in a string and return the first index of where it was found
 // if the char is not found in the string, it will output -1
 
-void find_it(string input, char search_query) {
+void find_it(string input, char search_query, bool caseSensitive = true) {
 	
 	vector<char> letters;
+
+	if (caseSensitive == false) {
+		for (int i = 0; i < input.size(); i++) {
+			input[i] = tolower(input[i]);
+		}
+		search_query = tolower(search_query);
+	}
 	
 	for (int i = 0; i < input.size(); i++) {
 	
@@ -34,7 +41,16 @@ void find_it(string input, char search_query) {
 // This function will find a substring in a string, and return the index of where it was found
 // if the substring is not found, it will output -1
 
-void find_it(string input, string search_query) {
+void find_it(string input, string search_query, bool caseSensitive = true) {
+	
+	if (caseSensitive == false) {
+		for (int i = 0; i < input.size(); i++) {
+			input[i] = tolower(input[i]);
+		}
+		for (int i = 0; i < search_query.size(); i++) {
+			search_query[i] = tolower(search_query[i]);
+		}
+	}
 	
 	if (input.find(search_query) != string::npos) {
 	
@@ -72,5 +88,14 @@ int main() {
 	
 	//expected value 17
 	find_it(input, "Yusuf");
+
+	//expected value -1
+	find_it(input, 'M');
+	
+	//expected value 6
+	find_it(input, 'M', false);
+
+	//expected value 9
+	find_it(input, "NaMe", false);
 
 }
