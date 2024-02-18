@@ -6,7 +6,7 @@ using namespace std;
 // This function will find a char in a string and return the first index of where it was found
 // if the char is not found in the string, it will output -1
 
-void find_it(string input, char search_query, bool caseSensitive = true) {
+void find_it(string input, char search_query, bool caseSensitive = true, int starting_position = 0) {
 	
 	vector<char> letters;
 
@@ -23,7 +23,7 @@ void find_it(string input, char search_query, bool caseSensitive = true) {
 	
 	}
 	
-	for (int i = 0; i < letters.size(); i++) {
+	for (int i = starting_position; i < letters.size(); i++) {
 	
 		if (letters[i] == search_query) {
 		
@@ -41,7 +41,7 @@ void find_it(string input, char search_query, bool caseSensitive = true) {
 // This function will find a substring in a string, and return the index of where it was found
 // if the substring is not found, it will output -1
 
-void find_it(string input, string search_query, bool caseSensitive = true) {
+void find_it(string input, string search_query, bool caseSensitive = true, int starting_position = 0) {
 	
 	if (caseSensitive == false) {
 		for (int i = 0; i < input.size(); i++) {
@@ -52,9 +52,9 @@ void find_it(string input, string search_query, bool caseSensitive = true) {
 		}
 	}
 	
-	if (input.find(search_query) != string::npos) {
+	if (input.find(search_query, starting_position) != string::npos) {
 	
-		cout << input.find(search_query) << endl;
+		cout << input.find(search_query, starting_position) << endl;
 		
 	} else {
 	
@@ -97,5 +97,17 @@ int main() {
 
 	//expected value 9
 	find_it(input, "NaMe", false);
+
+	//expected value 4
+	find_it(input, 'o', true, 3);
+
+	//expected value -1
+	find_it(input, 'o', true, 8);
+
+	//expected value 9
+	find_it(input, "na", true, 4);
+
+	//expected value -1
+	find_it(input, "na", true, 15);
 
 }
