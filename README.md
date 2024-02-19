@@ -13,3 +13,10 @@ have to distinguish between findCharacter versus findSubstring.
 
 Write a driver program that exercises your functions. Make sure that it tests a variety of
 cases to ensure that your code is working as expected.
+
+In order to run this code, you must be able to compile and run C++ programs on your machine.
+
+To run the program:
+
+g++ where.cpp
+./a.out
